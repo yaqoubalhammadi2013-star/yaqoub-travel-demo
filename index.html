@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YAQOUB TRAVEL</title>
+    <meta
+      name="description"
+      content="YAQOUB TRAVEL demo website for trip planning, destination inspiration, and daily price checks."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand-wrap">
+          <div class="brand-mark">✈️</div>
+          <div>
+            <div class="brand-name">YAQOUB TRAVEL</div>
+            <div class="brand-sub">Demo mode • honest by design</div>
+          </div>
+        </div>
+        <button id="refreshAllBtn" class="primary-btn">Refresh prices</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <span class="eyebrow">Trip monitoring</span>
+            <h1>Plan smarter. Check daily. Stay honest.</h1>
+            <p>
+              Save flight ideas, compare Abu Dhabi and Dubai departures, and watch
+              daily updates. This demo clearly marks prices as “not verifiable” until a live API is connected.
+            </p>
+            <div class="hero-stats">
+              <div>
+                <strong>2</strong>
+                <span>airports</span>
+              </div>
+              <div>
+                <strong>Daily</strong>
+                <span>refresh</span>
+              </div>
+              <div>
+                <strong>Demo</strong>
+                <span>safe mode</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-card">
+            <p class="status-pill">Status: demo check</p>
+            <h3>Today’s snapshot</h3>
+            <ul>
+              <li><span>AUH</span><strong>Not verifiable</strong></li>
+              <li><span>DXB</span><strong>Not verifiable</strong></li>
+              <li><span>Last refresh</span><strong id="lastRefreshLabel">Waiting</strong></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="container form-section">
+        <div class="section-head">
+          <h2>Create a trip</h2>
+          <p>No guessing. No fake claims. Only real inputs from you.</p>
+        </div>
+
+        <form id="tripForm" class="trip-form">
+          <div class="field-grid">
+            <label>
+              Destination city
+              <input type="text" id="destinationCity" placeholder="Paris" required />
+            </label>
+            <label>
+              Destination country
+              <input type="text" id="destinationCountry" placeholder="France" required />
+            </label>
+            <label>
+              Departure date
+              <input type="date" id="departureDate" required />
+            </label>
+            <label>
+              Return date
+              <input type="date" id="returnDate" required />
+            </label>
+            <label>
+              Number of travellers
+              <input type="number" id="adults" min="1" value="2" required />
+            </label>
+            <label>
+              Cabin class
+              <select id="cabin">
+                <option value="ECONOMY">ECONOMY</option>
+                <option value="BUSINESS">BUSINESS</option>
+                <option value="FIRST">FIRST</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="primary-btn">Save trip</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="container trips-section">
+        <div class="section-head inline">
+          <h2>Saved trips</h2>
+          <span id="tripCount" class="count-pill">0 trips</span>
+        </div>
+        <div id="tripList" class="trip-list" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <template id="tripCardTemplate">
+      <article class="trip-card">
+        <div class="trip-image"></div>
+        <div class="trip-body">
+          <div class="trip-title-row">
+            <div>
+              <p class="trip-country"></p>
+              <h3 class="trip-city"></h3>
+            </div>
+            <span class="trip-status">Demo</span>
+          </div>
+
+          <div class="trip-meta">
+            <span class="meta-item"></span>
+            <span class="meta-item"></span>
+            <span class="meta-item"></span>
+          </div>
+
+          <div class="price-grid">
+            <div class="price-box">
+              <span>AUH</span>
+              <strong class="origin-auh">Not verifiable</strong>
+            </div>
+            <div class="price-box">
+              <span>DXB</span>
+              <strong class="origin-dxb">Not verifiable</strong>
+            </div>
+          </div>
+
+          <div class="trip-footer">
+            <small class="last-refresh">Last update: waiting</small>
+            <button class="secondary-btn refresh-one">Refresh</button>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
