@@ -1,161 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YAQOUB TRAVEL</title>
-    <meta
-      name="description"
-      content="YAQOUB TRAVEL demo website for trip planning, destination inspiration, and daily price checks."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="topbar">
-      <div class="container nav">
-        <div class="brand-wrap">
-          <div class="brand-mark">✈️</div>
-          <div>
-            <div class="brand-name">YAQOUB TRAVEL</div>
-            <div class="brand-sub">Demo mode • honest by design</div>
-          </div>
-        </div>
-        <button id="refreshAllBtn" class="primary-btn">Refresh prices</button>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071b36">
+  <meta name="description" content="Discover memorable journeys with YAQOUB TRAVEL. Compare your options and book with trusted travel providers.">
+  <title>YAQOUB TRAVEL — Travel More. Pay Less.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement"><span>✦</span> Thoughtful journeys. Trusted booking partners. <a href="#deals">Explore our travel picks <span aria-hidden="true">→</span></a></div>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#home" aria-label="YAQOUB TRAVEL home"><span class="brand-icon">Y</span><span class="brand-copy"><strong>YAQOUB <i>TRAVEL</i></strong><small>TRAVEL MORE. PAY LESS.</small></span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <a href="#home">Home</a><a href="#flights">Flights</a><a href="#hotels">Hotels</a><a href="#destinations">Destinations</a><a href="#deals">Special deals</a><a href="#about">About</a><a href="#contact">Contact</a><a class="nav-faq" href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-image" role="img" aria-label="Coastal Mediterranean town at sunset"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-content wrap">
+        <p class="eyebrow light">YOUR NEXT CHAPTER STARTS HERE</p>
+        <h1>See more of the<br><em>world you love.</em></h1>
+        <p class="hero-lede">Thoughtfully chosen stays and journeys, with the freedom to find the right trip for you.</p>
+        <a class="button button-gold" href="#flights">Start exploring <span>→</span></a>
+        <div class="hero-note"><span class="gold-dot"></span> Compare trusted providers. Book directly with them.</div>
       </div>
-    </header>
+      <div class="hero-caption">Aegean coast · Greece</div>
+    </section>
 
-    <main>
-      <section class="hero">
-        <div class="container hero-inner">
-          <div class="hero-copy">
-            <span class="eyebrow">Trip monitoring</span>
-            <h1>Plan smarter. Check daily. Stay honest.</h1>
-            <p>
-              Save flight ideas, compare Abu Dhabi and Dubai departures, and watch
-              daily updates. This demo clearly marks prices as “not verifiable” until a live API is connected.
-            </p>
-            <div class="hero-stats">
-              <div>
-                <strong>2</strong>
-                <span>airports</span>
-              </div>
-              <div>
-                <strong>Daily</strong>
-                <span>refresh</span>
-              </div>
-              <div>
-                <strong>Demo</strong>
-                <span>safe mode</span>
-              </div>
-            </div>
+    <section class="booking wrap" aria-label="Travel search">
+      <div class="booking-tabs" role="tablist" aria-label="Choose what to search">
+        <button class="booking-tab active" id="flightTab" role="tab" aria-selected="true" aria-controls="flightPanel">✈ &nbsp;Flights</button>
+        <button class="booking-tab" id="hotelTab" role="tab" aria-selected="false" aria-controls="hotelPanel">▧ &nbsp;Hotels</button>
+      </div>
+      <div id="flightPanel" class="booking-panel" role="tabpanel" aria-labelledby="flightTab">
+        <form id="flightForm" class="search-form">
+          <div class="trip-options"><label class="radio-label"><input type="radio" name="tripType" value="roundtrip" checked> Round trip</label><label class="radio-label"><input type="radio" name="tripType" value="oneway"> One way</label><span class="secure-note">Compare departures from Abu Dhabi &amp; Dubai</span></div>
+          <div class="search-grid flights-grid">
+            <label class="field"><span>From</span><select id="origin" required><option value="AUH">Abu Dhabi (AUH)</option><option value="DXB">Dubai (DXB)</option></select></label>
+            <label class="field"><span>To</span><input id="flightDestination" list="airportList" placeholder="City, country or airport" required autocomplete="off"><datalist id="airportList"><option value="London, United Kingdom (LHR)"><option value="Paris, France (CDG)"><option value="Istanbul, Türkiye (IST)"><option value="Tokyo, Japan (HND)"><option value="Bangkok, Thailand (BKK)"><option value="Singapore (SIN)"><option value="New York, United States (JFK)"><option value="Rome, Italy (FCO)"><option value="Malé, Maldives (MLE)"><option value="Cairo, Egypt (CAI)"><option value="Mumbai, India (BOM)"><option value="Doha, Qatar (DOH)"><option value="Barcelona, Spain (BCN)"><option value="Sydney, Australia (SYD)"><option value="Toronto, Canada (YYZ)"><option value="Amsterdam, Netherlands (AMS)"><option value="Seoul, South Korea (ICN)"><option value="Bali, Indonesia (DPS)"></datalist></label>
+            <label class="field"><span>Departure</span><input id="departDate" type="date" required></label>
+            <label class="field return-field"><span>Return</span><input id="returnDate" type="date" required></label>
+            <label class="field"><span>Travellers</span><select id="travellers"><option value="1">1 traveller</option><option value="2" selected>2 travellers</option><option value="3">3 travellers</option><option value="4">4 travellers</option><option value="5">5 travellers</option><option value="6">6 travellers</option><option value="7">7 travellers</option><option value="8">8 travellers</option><option value="9">9 travellers</option></select></label>
+            <label class="field"><span>Cabin class</span><select id="cabin"><option>Economy</option><option>Premium Economy</option><option>Business</option><option>First</option></select></label>
+            <button class="button button-navy search-button" type="submit">Search flights <span>→</span></button>
           </div>
-          <div class="hero-card">
-            <p class="status-pill">Status: demo check</p>
-            <h3>Today’s snapshot</h3>
-            <ul>
-              <li><span>AUH</span><strong>Not verifiable</strong></li>
-              <li><span>DXB</span><strong>Not verifiable</strong></li>
-              <li><span>Last refresh</span><strong id="lastRefreshLabel">Waiting</strong></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="container form-section">
-        <div class="section-head">
-          <h2>Create a trip</h2>
-          <p>No guessing. No fake claims. Only real inputs from you.</p>
-        </div>
-
-        <form id="tripForm" class="trip-form">
-          <div class="field-grid">
-            <label>
-              Destination city
-              <input type="text" id="destinationCity" placeholder="Paris" required />
-            </label>
-            <label>
-              Destination country
-              <input type="text" id="destinationCountry" placeholder="France" required />
-            </label>
-            <label>
-              Departure date
-              <input type="date" id="departureDate" required />
-            </label>
-            <label>
-              Return date
-              <input type="date" id="returnDate" required />
-            </label>
-            <label>
-              Number of travellers
-              <input type="number" id="adults" min="1" value="2" required />
-            </label>
-            <label>
-              Cabin class
-              <select id="cabin">
-                <option value="ECONOMY">ECONOMY</option>
-                <option value="BUSINESS">BUSINESS</option>
-                <option value="FIRST">FIRST</option>
-              </select>
-            </label>
-          </div>
-          <div class="form-actions">
-            <button type="submit" class="primary-btn">Save trip</button>
-          </div>
+          <p class="form-hint">Search opens a trusted provider in a new tab. Flight availability and prices are provided by them.</p>
         </form>
-      </section>
+      </div>
+      <div id="hotelPanel" class="booking-panel hidden" role="tabpanel" aria-labelledby="hotelTab" hidden>
+        <form id="hotelForm" class="search-form">
+          <div class="search-grid hotel-grid">
+            <label class="field"><span>Where to?</span><input id="hotelDestination" list="hotelPlaces" placeholder="City, region or hotel" required autocomplete="off"><datalist id="hotelPlaces"><option value="Dubai, United Arab Emirates"><option value="Abu Dhabi, United Arab Emirates"><option value="Paris, France"><option value="London, United Kingdom"><option value="Istanbul, Türkiye"><option value="Tokyo, Japan"><option value="Bali, Indonesia"><option value="Singapore"><option value="Malé, Maldives"><option value="Rome, Italy"><option value="New York, United States"><option value="Bangkok, Thailand"><option value="Barcelona, Spain"><option value="Cairo, Egypt"><option value="Amsterdam, Netherlands"></datalist></label>
+            <label class="field"><span>Check in</span><input id="checkin" type="date" required></label><label class="field"><span>Check out</span><input id="checkout" type="date" required></label>
+            <label class="field"><span>Guests</span><select id="hotelGuests"><option>1 adult</option><option selected>2 adults</option><option>3 adults</option><option>4 adults</option><option>2 adults, 1 child</option><option>2 adults, 2 children</option><option>Family (2 adults, 3 children)</option></select></label>
+            <label class="field"><span>Rooms</span><select id="rooms"><option>1 room</option><option>2 rooms</option><option>3 rooms</option><option>4 rooms</option></select></label>
+            <button class="button button-navy search-button" type="submit">Search stays <span>→</span></button>
+          </div><p class="form-hint">Compare accommodation on Booking.com. Rates, photos and availability are supplied by the provider.</p>
+        </form>
+      </div>
+      <div id="searchMessage" class="search-message" role="status" aria-live="polite" hidden></div>
+    </section>
 
-      <section class="container trips-section">
-        <div class="section-head inline">
-          <h2>Saved trips</h2>
-          <span id="tripCount" class="count-pill">0 trips</span>
-        </div>
-        <div id="tripList" class="trip-list" aria-live="polite"></div>
-      </section>
-    </main>
+    <section class="trust-strip"><div class="wrap trust-inner"><div><span class="trust-icon">✧</span><span><strong>Curated inspiration</strong><small>Ideas for every kind of trip</small></span></div><div><span class="trust-icon">↗</span><span><strong>Trusted providers</strong><small>Book with the people who operate</small></span></div><div><span class="trust-icon">◎</span><span><strong>Clear, honest pricing</strong><small>No made-up deals or fares</small></span></div></div></section>
 
-    <template id="tripCardTemplate">
-      <article class="trip-card">
-        <div class="trip-image"></div>
-        <div class="trip-body">
-          <div class="trip-title-row">
-            <div>
-              <p class="trip-country"></p>
-              <h3 class="trip-city"></h3>
-            </div>
-            <span class="trip-status">Demo</span>
-          </div>
+    <section class="section wrap" id="destinations">
+      <div class="section-heading"><div><p class="eyebrow">A LITTLE INSPIRATION</p><h2>Somewhere wonderful<br><em>is waiting.</em></h2></div><a class="text-link" href="#flights">Find your flight <span>→</span></a></div>
+      <div class="destination-grid">
+        <a class="destination-card dest-large" href="https://www.google.com/travel/flights?q=flights%20to%20Bali" target="_blank" rel="noopener noreferrer"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Temple and tropical scenery in Bali" loading="lazy"><span class="card-label">INDONESIA</span><span class="destination-title">Bali <small>Temples, tides &amp; time to unwind</small></span><span class="circle-arrow">↗</span></a>
+        <a class="destination-card" href="https://www.google.com/travel/flights?q=flights%20to%20Paris" target="_blank" rel="noopener noreferrer"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Paris rooftops and the Eiffel Tower" loading="lazy"><span class="card-label">FRANCE</span><span class="destination-title">Paris <small>Find your own kind of romance</small></span><span class="circle-arrow">↗</span></a>
+        <a class="destination-card" href="https://www.google.com/travel/flights?q=flights%20to%20Tokyo" target="_blank" rel="noopener noreferrer"><img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Traditional street in Kyoto, Japan" loading="lazy"><span class="card-label">JAPAN</span><span class="destination-title">Tokyo &amp; beyond <small>Tradition meets tomorrow</small></span><span class="circle-arrow">↗</span></a>
+        <a class="destination-card" href="https://www.google.com/travel/flights?q=flights%20to%20Maldives" target="_blank" rel="noopener noreferrer"><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Aerial view of a Maldives resort" loading="lazy"><span class="card-label">MALDIVES</span><span class="destination-title">The Maldives <small>Let the horizon slow you down</small></span><span class="circle-arrow">↗</span></a>
+      </div>
+    </section>
 
-          <div class="trip-meta">
-            <span class="meta-item"></span>
-            <span class="meta-item"></span>
-            <span class="meta-item"></span>
-          </div>
+    <section class="hotel-feature" id="hotels"><div class="wrap feature-inner"><div class="feature-photo"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&amp;fit=crop&amp;w=1100&amp;q=85" alt="Luxury hotel pool overlooking a tropical landscape" loading="lazy"><span class="photo-tag">STAYS WITH A SENSE OF PLACE</span></div><div class="feature-copy"><p class="eyebrow">THE RIGHT PLACE TO LAND</p><h2>Make the stay<br>part of the <em>story.</em></h2><p>From a boutique hideaway to a city-centre favourite, explore stays around the world with our trusted booking partner.</p><ul class="feature-list"><li><span>✦</span> Search properties worldwide</li><li><span>✦</span> See verified guest ratings</li><li><span>✦</span> Check current rates and policies</li></ul><button class="button button-navy" id="hotelExplore">Explore hotels <span>→</span></button><p class="fine-print">Hotel results, prices, ratings and photos are sourced directly from Booking.com when you search.</p></div></div></section>
 
-          <div class="price-grid">
-            <div class="price-box">
-              <span>AUH</span>
-              <strong class="origin-auh">Not verifiable</strong>
-            </div>
-            <div class="price-box">
-              <span>DXB</span>
-              <strong class="origin-dxb">Not verifiable</strong>
-            </div>
-          </div>
+    <section class="section deals-section" id="deals"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">GOOD TRIPS, NO GUESSWORK</p><h2>Worthwhile ways<br>to <em>get away.</em></h2></div><span class="verified-note">Honest by design · no invented discounts</span></div><div class="deal-grid"><article class="deal-card"><div class="deal-image"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Dubai skyline at dusk" loading="lazy"><span>DESTINATION PICK</span></div><div class="deal-body"><p class="eyebrow">CITY BREAK</p><h3>Dubai, at your own pace</h3><p>Skyline mornings, old-town evenings, and everything in between. Explore flights and stays for your dates.</p><a class="text-link deal-link" href="https://www.google.com/travel/explore?tfs=CBwQAxopagwIAxIIL20vMDFmMDhyDAgDEggvbS8wMjJ2NBoAIgJBRSoMCAMSCC9tLzAxZjA4cgwIAxIIL20vMDIydjQ&amp;curr=AED" target="_blank" rel="noopener noreferrer">Explore Dubai <span>→</span></a></div></article><article class="deal-card"><div class="deal-image"><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Canal and historic buildings in Venice" loading="lazy"><span>DESTINATION PICK</span></div><div class="deal-body"><p class="eyebrow">SLOW TRAVEL</p><h3>Take the scenic route to Italy</h3><p>Make room for long lunches and little discoveries. Check current travel options with our providers.</p><a class="text-link deal-link" href="https://www.google.com/travel/flights?q=flights%20to%20Venice&amp;curr=AED" target="_blank" rel="noopener noreferrer">Explore Venice <span>→</span></a></div></article><article class="deal-card deal-note"><span class="deal-spark">✳</span><p class="eyebrow">A PROMISE WE KEEP</p><h3>Real offers only.<br><em>Always.</em></h3><p>We don't publish made-up sale prices. Any fare or rate you see is shown by the provider and can change until booking is confirmed there.</p><a href="#faq" class="text-link">How our pricing works <span>→</span></a></article></div></div></section>
 
-          <div class="trip-footer">
-            <small class="last-refresh">Last update: waiting</small>
-            <button class="secondary-btn refresh-one">Refresh</button>
-          </div>
-        </div>
-      </article>
-    </template>
+    <section class="quote-band"><div class="wrap quote-inner"><span class="quote-mark">“</span><blockquote>Travel isn't just about where you go.<br>It's about how much more <em>life you get to live.</em></blockquote><span class="quote-rule"></span><p>YAQOUB TRAVEL · UAE</p></div></section>
 
-    <script src="script.js"></script>
-  </body>
+    <section class="section about-section wrap" id="about"><div class="about-image"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="A boat on a mountain lake" loading="lazy"><span class="about-image-caption">Go beyond the familiar.</span></div><div class="about-copy"><p class="eyebrow">A MORE THOUGHTFUL WAY TO TRAVEL</p><h2>Big world.<br><em>Personal journeys.</em></h2><p>YAQOUB TRAVEL is an independent travel discovery experience built around one simple idea: getting away should feel exciting, clear and accessible.</p><p>We bring inspiration and trusted travel search together, so you can explore your options and make your booking directly with the airline or accommodation provider.</p><div class="about-signoff"><span class="sign-mark">Y</span><span><strong>Travel More. Pay Less.</strong><small>With care, from YAQOUB TRAVEL</small></span></div></div></section>
+
+    <section class="faq-section" id="faq"><div class="wrap faq-wrap"><div class="faq-intro"><p class="eyebrow">GOOD TO KNOW</p><h2>Questions, <em>answered.</em></h2><p>Here's how searching and booking with YAQOUB TRAVEL works.</p><a href="#contact" class="text-link">Still have a question? <span>→</span></a></div><div class="faq-list"><details><summary>Are flight and hotel prices live on this website?<span>+</span></summary><p>This website currently has no connected live travel API. Search forms open Google Flights or Booking.com, where you can see current availability and provider-supplied prices. We never show sample fares as if they were live.</p></details><details><summary>How do I book a trip?<span>+</span></summary><p>Choose your journey or stay and continue to the airline or travel provider. They handle the booking, payment, changes and customer support. YAQOUB TRAVEL does not collect card details or issue booking confirmations.</p></details><details><summary>Why don't you show discount prices?<span>+</span></summary><p>We only show a saving when a booking provider supplies a verifiable original price and discounted price. No verified offer feed is connected yet, so our destination picks are inspiration—not claimed discounts.</p></details><details><summary>Can I compare Abu Dhabi and Dubai departures?<span>+</span></summary><p>Yes. Choose AUH (Abu Dhabi) or DXB (Dubai) in the flight search. The provider search opens with your selected origin, where you can review available airlines, schedules, baggage terms and current prices.</p></details><details><summary>Are the hotel photos and ratings live listings?<span>+</span></summary><p>Photos on our inspiration pages illustrate destinations and stays. They are not representations of a specific bookable hotel. Search Booking.com for actual property listings, current photos, verified guest ratings and rates.</p></details><details><summary>Can I change or cancel my reservation here?<span>+</span></summary><p>Reservations are made with the provider. Please contact the airline, hotel or booking platform directly and check its fare rules and cancellation terms before you book.</p></details></div></div></section>
+
+    <section class="contact-section" id="contact"><div class="wrap contact-inner"><div><p class="eyebrow light">WE'D LOVE TO HEAR FROM YOU</p><h2>Let's talk about<br><em>what's next.</em></h2><p>Questions, feedback or a destination on your mind? Get in touch.</p></div><a class="button button-gold" href="mailto:hello@yaqoubtravel.com?subject=Hello%20YAQOUB%20TRAVEL">Email YAQOUB TRAVEL <span>↗</span></a></div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-top"><a class="brand footer-brand" href="#home"><span class="brand-icon">Y</span><span class="brand-copy"><strong>YAQOUB <i>TRAVEL</i></strong><small>TRAVEL MORE. PAY LESS.</small></span></a><p>Thoughtful journeys start with a little inspiration.</p><div class="footer-links"><a href="#flights">Flights</a><a href="#hotels">Hotels</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div></div><div class="wrap footer-bottom"><span>© <span id="year"></span> YAQOUB TRAVEL. All rights reserved.</span><span>Booking and pricing are provided by third-party travel partners. Availability and terms may change.</span></div></footer>
+  <script src="script.js"></script>
+</body>
 </html>
