@@ -1,0 +1,18 @@
+{
+  "name": "YAQOUB TRAVEL",
+  "short_name": "YAQOUB",
+  "description": "Secure travel search and flight comparison platform for comparing AUH and DXB departures.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071b2f",
+  "theme_color": "#071b2f",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

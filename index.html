@@ -3,11 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YAQOUB TRAVEL</title>
+    <meta name="theme-color" content="#071b2f" />
     <meta
       name="description"
-      content="YAQOUB TRAVEL demo website for trip planning, destination inspiration, and daily price checks."
+      content="YAQOUB TRAVEL helps you compare flights from Abu Dhabi and Dubai, select destinations, and refresh live flight prices securely."
     />
+    <title>YAQOUB TRAVEL</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,144 +21,233 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="topbar">
-      <div class="container nav">
-        <div class="brand-wrap">
-          <div class="brand-mark">✈️</div>
-          <div>
-            <div class="brand-name">YAQOUB TRAVEL</div>
-            <div class="brand-sub">Demo mode • honest by design</div>
-          </div>
-        </div>
-        <button id="refreshAllBtn" class="primary-btn">Refresh prices</button>
-      </div>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="container hero-inner">
-          <div class="hero-copy">
-            <span class="eyebrow">Trip monitoring</span>
-            <h1>Plan smarter. Check daily. Stay honest.</h1>
-            <p>
-              Save flight ideas, compare Abu Dhabi and Dubai departures, and watch
-              daily updates. This demo clearly marks prices as “not verifiable” until a live API is connected.
-            </p>
-            <div class="hero-stats">
-              <div>
-                <strong>2</strong>
-                <span>airports</span>
-              </div>
-              <div>
-                <strong>Daily</strong>
-                <span>refresh</span>
-              </div>
-              <div>
-                <strong>Demo</strong>
-                <span>safe mode</span>
-              </div>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="container nav">
+          <div class="brand-wrap" aria-label="YAQOUB TRAVEL home">
+            <div class="brand-mark">
+              <img src="/logo.svg" alt="YAQOUB TRAVEL logo" />
             </div>
-          </div>
-          <div class="hero-card">
-            <p class="status-pill">Status: demo check</p>
-            <h3>Today’s snapshot</h3>
-            <ul>
-              <li><span>AUH</span><strong>Not verifiable</strong></li>
-              <li><span>DXB</span><strong>Not verifiable</strong></li>
-              <li><span>Last refresh</span><strong id="lastRefreshLabel">Waiting</strong></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="container form-section">
-        <div class="section-head">
-          <h2>Create a trip</h2>
-          <p>No guessing. No fake claims. Only real inputs from you.</p>
-        </div>
-
-        <form id="tripForm" class="trip-form">
-          <div class="field-grid">
-            <label>
-              Destination city
-              <input type="text" id="destinationCity" placeholder="Paris" required />
-            </label>
-            <label>
-              Destination country
-              <input type="text" id="destinationCountry" placeholder="France" required />
-            </label>
-            <label>
-              Departure date
-              <input type="date" id="departureDate" required />
-            </label>
-            <label>
-              Return date
-              <input type="date" id="returnDate" required />
-            </label>
-            <label>
-              Number of travellers
-              <input type="number" id="adults" min="1" value="2" required />
-            </label>
-            <label>
-              Cabin class
-              <select id="cabin">
-                <option value="ECONOMY">ECONOMY</option>
-                <option value="BUSINESS">BUSINESS</option>
-                <option value="FIRST">FIRST</option>
-              </select>
-            </label>
-          </div>
-          <div class="form-actions">
-            <button type="submit" class="primary-btn">Save trip</button>
-          </div>
-        </form>
-      </section>
-
-      <section class="container trips-section">
-        <div class="section-head inline">
-          <h2>Saved trips</h2>
-          <span id="tripCount" class="count-pill">0 trips</span>
-        </div>
-        <div id="tripList" class="trip-list" aria-live="polite"></div>
-      </section>
-    </main>
-
-    <template id="tripCardTemplate">
-      <article class="trip-card">
-        <div class="trip-image"></div>
-        <div class="trip-body">
-          <div class="trip-title-row">
             <div>
-              <p class="trip-country"></p>
-              <h3 class="trip-city"></h3>
-            </div>
-            <span class="trip-status">Demo</span>
-          </div>
-
-          <div class="trip-meta">
-            <span class="meta-item"></span>
-            <span class="meta-item"></span>
-            <span class="meta-item"></span>
-          </div>
-
-          <div class="price-grid">
-            <div class="price-box">
-              <span>AUH</span>
-              <strong class="origin-auh">Not verifiable</strong>
-            </div>
-            <div class="price-box">
-              <span>DXB</span>
-              <strong class="origin-dxb">Not verifiable</strong>
+              <div class="brand-name">YAQOUB TRAVEL</div>
+              <div class="brand-sub">Premium flight search • secure live pricing</div>
             </div>
           </div>
+          <button id="refreshLivePricesBtn" class="primary-btn large-btn" type="button">
+            ↻ REFRESH LIVE PRICES
+          </button>
+        </div>
+      </header>
 
-          <div class="trip-footer">
-            <small class="last-refresh">Last update: waiting</small>
-            <button class="secondary-btn refresh-one">Refresh</button>
+      <main>
+        <section class="hero">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <span class="eyebrow">Travel smarter</span>
+              <h1>Compare flights from Abu Dhabi and Dubai in seconds.</h1>
+              <p>
+                Search global destinations, compare trusted airlines, and refresh live availability using a secure backend that keeps API secrets private.
+              </p>
+
+              <div class="hero-stats" aria-label="Travel stats">
+                <div>
+                  <strong>2</strong>
+                  <span>departure hubs</span>
+                </div>
+                <div>
+                  <strong>Live</strong>
+                  <span>price checks</span>
+                </div>
+                <div>
+                  <strong>7+</strong>
+                  <span>popular cities</span>
+                </div>
+              </div>
+            </div>
+
+            <aside class="hero-card" aria-live="polite">
+              <div class="status-pill">Live comparison</div>
+              <h3>Today’s airport comparison</h3>
+              <ul>
+                <li>
+                  <span>AUH</span>
+                  <strong id="auhSummary">Waiting</strong>
+                </li>
+                <li>
+                  <span>DXB</span>
+                  <strong id="dxbSummary">Waiting</strong>
+                </li>
+                <li>
+                  <span>Last checked</span>
+                  <strong id="lastCheckedStamp">Not yet</strong>
+                </li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <section class="container search-section">
+          <div class="section-head">
+            <h2>Plan your trip</h2>
+            <p>Choose a destination, compare both hubs, and search real routes.</p>
+          </div>
+
+          <form id="flightSearchForm" class="search-card" novalidate>
+            <div class="field-grid">
+              <label>
+                Country
+                <input id="countryInput" list="countryList" placeholder="Choose country" required />
+                <datalist id="countryList"></datalist>
+              </label>
+
+              <label>
+                City
+                <input id="cityInput" list="cityList" placeholder="Choose city" required />
+                <datalist id="cityList"></datalist>
+              </label>
+
+              <label>
+                Departure date
+                <input id="departureDate" type="date" required />
+              </label>
+
+              <label>
+                Return date
+                <input id="returnDate" type="date" required />
+              </label>
+
+              <label>
+                Adults
+                <input id="adults" type="number" min="1" max="9" value="2" required />
+              </label>
+
+              <label>
+                Children
+                <input id="children" type="number" min="0" max="8" value="0" />
+              </label>
+
+              <label>
+                Cabin class
+                <select id="cabinClass">
+                  <option value="ECONOMY">Economy</option>
+                  <option value="PREMIUM_ECONOMY">Premium Economy</option>
+                  <option value="BUSINESS">Business</option>
+                  <option value="FIRST">First Class</option>
+                </select>
+              </label>
+
+              <label>
+                Trip type
+                <select id="tripType">
+                  <option value="round-trip">Return</option>
+                  <option value="one-way">One-way</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="airport-block">
+              <div class="airport-header">
+                <h3>Arrival airport preference</h3>
+                <span>The two default departure airports are AUH and DXB.</span>
+              </div>
+              <div id="airportOptions" class="airport-options" aria-live="polite"></div>
+            </div>
+
+            <div class="search-actions">
+              <button type="submit" class="primary-btn">Search flights</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="container results-section">
+          <div class="section-head dif">
+            <h2>Flight results</h2>
+            <div class="status-row">
+              <span id="apiStatusChip" class="status-chip">API status: checking…</span>
+            </div>
+          </div>
+
+          <div id="compareGrid" class="compare-grid"></div>
+
+          <div class="filters-panel">
+            <div class="filter-group">
+              <button class="filter-btn active" data-filter="cheapest" type="button">Cheapest</button>
+              <button class="filter-btn" data-filter="fastest" type="button">Fastest</button>
+              <button class="filter-btn" data-filter="nonstop" type="button">Non-stop</button>
+            </div>
+
+            <div class="filter-controls">
+              <label>
+                Airline
+                <select id="airlineFilter">
+                  <option value="all">All airlines</option>
+                </select>
+              </label>
+
+              <label>
+                Departure window
+                <select id="departureFilter">
+                  <option value="all">Any time</option>
+                  <option value="morning">Morning</option>
+                  <option value="afternoon">Afternoon</option>
+                  <option value="evening">Evening</option>
+                </select>
+              </label>
+
+              <label>
+                Max price (AED)
+                <input id="priceLimit" type="range" min="200" max="5000" step="50" value="5000" />
+                <span id="priceLimitText">Up to AED 5,000</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="flightResults" class="flight-results" aria-live="polite"></div>
+        </section>
+
+        <section class="container tracker-section">
+          <div class="section-head">
+            <h2>Price tracking</h2>
+            <p>Monitor your route and set a target price alert when the market reaches your budget.</p>
+          </div>
+
+          <div class="tracker-panel">
+            <div class="tracker-form">
+              <label>
+                Target price (AED)
+                <input id="targetPriceInput" type="number" min="0" step="50" placeholder="2500" />
+              </label>
+              <button id="saveSearchBtn" class="secondary-btn" type="button">Save search</button>
+              <button id="exportTripsBtn" class="ghost-btn" type="button">Export trips</button>
+            </div>
+
+            <div id="trackerStatus" class="tracker-status" aria-live="polite">
+              No target price set yet.
+            </div>
+          </div>
+        </section>
+
+        <section class="container trips-section">
+          <div class="section-head inline-head">
+            <h2>MY TRIPS</h2>
+            <span id="tripCounter" class="count-pill">0 saved</span>
+          </div>
+          <div id="savedTripsList" class="saved-trips-list" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div>
+            <strong>YAQOUB TRAVEL</strong>
+            <p>Flight comparison built for modern travellers.</p>
+          </div>
+          <div class="footer-note">
+            <span>Secure backend • live prices when configured • no fake booking claims</span>
           </div>
         </div>
-      </article>
-    </template>
+      </footer>
+    </div>
 
     <script src="script.js"></script>
   </body>
